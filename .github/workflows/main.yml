@@ -1,0 +1,40 @@
+name: Create-AppImage
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential cmake git libssl-dev qt5-default
+
+      - name: Clone Blink repository
+        run: git clone https://github.com/AGProjects/blink.git
+        run: cd blink
+
+      - name: Build and install Blink
+        run: |
+          mkdir build
+          cd build
+          cmake ..
+          make
+          sudo make install
+
+      - name: Download linuxdeployqt
+        run: |
+          wget https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage
+          chmod +x linuxdeployqt-continuous-x86_64.AppImage
+
+      - name: Create AppImage
+        run: |
+          ./linuxdeployqt-continuous-x86_64.AppImage ./bin/blink -appimage
