@@ -19,8 +19,7 @@ jobs:
           sudo apt-get install -y build-essential cmake git libssl-dev qt5-default
 
       - name: Clone Blink repository
-        run: git clone https://github.com/AGProjects/blink.git
-        run: cd blink
+        run: git clone https://github.com/AGProjects/blink.git && cd blink
 
       - name: Build and install Blink
         run: |
