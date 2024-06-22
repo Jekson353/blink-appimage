@@ -38,6 +38,9 @@ jobs:
       - name: Update package list
         run: sudo apt-get update
 
+      - name: Install package fuse
+        run: sudo apt-get install -y fuse
+        
       - name: Install package Blink
         run: sudo apt-get install -y blink
 
