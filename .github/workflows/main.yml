@@ -16,7 +16,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential cmake git libssl-dev qt5-default
+          sudo apt-get install -y build-essential cmake git libssl-dev qtbase5-dev qt5-qmake
 
       - name: Clone Blink repository
         run: git clone https://github.com/AGProjects/blink.git && cd blink
