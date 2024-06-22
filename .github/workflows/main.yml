@@ -28,7 +28,11 @@ jobs:
         run: sudo wget -O /usr/share/keyrings/agp-debian-key.gpg http://download.ag-projects.com/agp-debian-key.gpg
 
       - name: Create sources list file
-        run: echo "deb [signed-by=/usr/share/keyrings/agp-debian-key.gpg] https://packages.ag-projects.com/debian stretch main
+        run: echo "deb     [signed-by=/usr/share/keyrings/agp-debian-key.gpg] https://packages.ag-projects.com/ubuntu jammy main 
+            deb     [signed-by=/usr/share/keyrings/agp-debian-key.gpg] https://packages.ag-projects.com/ubuntu focal main 
+            deb-src [signed-by=/usr/share/keyrings/agp-debian-key.gpg] https://packages.ag-projects.com/ubuntu focal main
+            deb-src [signed-by=/usr/share/keyrings/agp-debian-key.gpg] https://packages.ag-projects.com/ubuntu jammy main
+            deb [signed-by=/usr/share/keyrings/agp-debian-key.gpg] https://packages.ag-projects.com/debian stretch main
             deb-src [signed-by=/usr/share/keyrings/agp-debian-key.gpg] https://packages.ag-projects.com/debian stretch main" | sudo tee /etc/apt/sources.list.d/ag-projects.list
 
       - name: Update package list
